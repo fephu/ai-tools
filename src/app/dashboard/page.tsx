@@ -3,7 +3,7 @@ import TabSelection from "@/components/dashboard/TabSelection";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { isSubscription } from "@/lib/utils";
 
-const page = () => {
+const Page = () => {
   return (
     <MaxWidthWrapper>
       <div className="py-10">
@@ -21,4 +21,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

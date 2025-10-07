@@ -9,11 +9,11 @@ import loginIcon from "@/assets/login.gif";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { isAdminLogin } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -87,4 +87,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
