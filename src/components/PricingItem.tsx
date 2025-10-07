@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight } from "lucide-react";
-import { Button } from "./ui/button";
+import MovingArrowButton from "./MovingArrowButton";
 
 interface PricingItemProps {
   plan: string;
@@ -43,16 +43,8 @@ const PricingItem = ({
       </div>
 
       <div className="flex flex-col gap-2 p-6 items-end">
-        <p className="text-4xl">${price}</p>
-        <Button
-          className={cn(
-            "w-fit cursor-pointer",
-            plan === "Plus" && "bg-blue-700 hover:bg-blue-600"
-          )}
-        >
-          Get started
-          <ChevronRight />
-        </Button>
+        {price > 0 && <p className="text-4xl">${price}</p>}
+        {plan === "Plus" && <MovingArrowButton className="bg-gray-200" />}
       </div>
     </div>
   );

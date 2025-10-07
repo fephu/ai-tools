@@ -7,46 +7,34 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 
 const Navbar = () => {
   return (
-    <div className="bg-white sticky z-50 top-0 insent-x-0 h-16">
-      <header className="relative bg-white shadow-xs">
+    <div className="fixed z-40 top-0 insent-x-0 h-18 w-full backdrop-blur-md">
+      <header className="relative">
         <MaxWidthWrapper>
-          <div className="flex h-16 items-center">
-            <Link href="/">
-              <span className="text-xl md:text-3xl text-blue-700 font-bold">
+          <div className="flex h-16 items-center justify-between">
+            <Link href="#">
+              <span className="text-xl md:text-3xl text-blue-800 font-bold">
                 AI Tools
               </span>
             </Link>
 
-            <div className="ml-auto hidden md:flex items-center gap-4">
+            <div className="ml-auto hidden md:flex items-center gap-6">
               <Link
                 href="#pricing"
-                className={buttonVariants({ variant: "ghost" })}
+                className={buttonVariants({
+                  variant: "ghost",
+                })}
               >
-                Pricing
+                <span className="text-base tracking-tight">Gói giá</span>
               </Link>
               <Link
                 href="#contact"
-                className={buttonVariants({ variant: "ghost" })}
-              >
-                Contact us
-              </Link>
-              <Link
-                href="/login"
-                className={buttonVariants({
-                  variant: "ghost",
-                })}
-              >
-                Log in
-              </Link>
-              <Link
-                href="/signup"
                 className={buttonVariants({
                   variant: "ghost",
                   className:
-                    "bg-blue-700 text-white hover:bg-blue-600 hover:text-white",
+                    "bg-blue-800 text-white hover:bg-blue-700 hover:text-white",
                 })}
               >
-                Sign up
+                <span className="text-base tracking-tight">Liên hệ</span>
                 <MdOutlineArrowOutward />
               </Link>
             </div>

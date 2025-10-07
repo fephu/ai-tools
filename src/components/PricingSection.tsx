@@ -40,14 +40,15 @@ const PricingSection = () => {
     <motion.section
       id="pricing"
       ref={ref}
-      initial={{ y: 10, opacity: 0 }}
+      initial={{ y: 50, opacity: 0 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-gray-50"
     >
       <MaxWidthWrapper>
-        <div className="py-24 mx-auto text-center flex flex-col items-center max-w-3xl">
+        <div className="py-34 mx-auto text-center flex flex-col items-center max-w-3xl ">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Pricing
+            Gói giá
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-10 pt-12">

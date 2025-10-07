@@ -2,16 +2,12 @@
 
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { usePathname } from "next/navigation";
 
 const Footer = () => {
-  const pathname = usePathname();
-  const pathsToMinimize = ["/verify-email", "/sign-up", "/login"];
-
   return (
-    <footer className="bg-white flex-grow-0">
+    <footer className="bg-white flex-grow-0 border-t border-gray-200">
       <MaxWidthWrapper>
-        <div className="border-t border-gray-200 flex flex-col md:flex-row items-start justify-between gap-10 py-8">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-10 py-8">
           <div className="flex flex-col gap-1 max-w-60">
             <span className="text-3xl text-blue-700 font-bold">AI Tools</span>
             <span className="text-sm text-muted-foreground">
@@ -20,7 +16,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-1 font-medium">
-            <h2 className="font-bold text-lg">Connect</h2>
+            <h2 className="font-semibold text-lg">Thông tin</h2>
             <Link href={"#"}>X (Twitter)</Link>
             <Link href={"#"}>LinkedIn</Link>
             <Link href={"#"}>Email</Link>
