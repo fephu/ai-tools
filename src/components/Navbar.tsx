@@ -3,7 +3,6 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import logoImg from "@/assets/logo.svg";
-import Image from "next/image";
 import { buttonVariants } from "./ui/button";
 import { MdOutlineArrowOutward } from "react-icons/md";
 
@@ -14,15 +13,23 @@ const Navbar = () => {
         <MaxWidthWrapper>
           <div className="flex h-16 items-center">
             <Link href="/">
-              <span className="text-3xl text-blue-700 font-bold">AI Tools</span>
+              <span className="text-xl md:text-3xl text-blue-700 font-bold">
+                AI Tools
+              </span>
             </Link>
 
-            <div className="ml-auto flex items-center gap-4">
+            <div className="ml-auto hidden md:flex items-center gap-4">
               <Link
                 href="#pricing"
                 className={buttonVariants({ variant: "ghost" })}
               >
                 Pricing
+              </Link>
+              <Link
+                href="#contact"
+                className={buttonVariants({ variant: "ghost" })}
+              >
+                Contact us
               </Link>
               <Link
                 href="/login"

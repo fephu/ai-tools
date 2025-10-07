@@ -31,7 +31,7 @@ const PricingItem = ({
         <p className="mt-1 text-gray-500">{description}</p>
       </div>
 
-      <div className="p-6 flex flex-col gap-1">
+      <div className="p-6 flex flex-col gap-3">
         {features.map((f) => (
           <div key={f} className="flex items-center gap-2">
             <Check className="size-4" />
