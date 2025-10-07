@@ -8,10 +8,11 @@ import Image from "next/image";
 import loginIcon from "@/assets/login.gif";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { isAdminLogin } from "@/lib/utils";
 import { redirect } from "next/navigation";
+import Error from "next/error";
 
 const Page = () => {
   const [username, setUsername] = useState<string>("");
@@ -36,8 +37,12 @@ const Page = () => {
       alert(res.data.message);
 
       localStorage.setItem("token", res.data.token);
-    } catch (err: any) {
-      alert(err.response.data);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        alert(err.response?.data);
+      } else {
+        alert("Unexpected error");
+      }
     }
   };
 
