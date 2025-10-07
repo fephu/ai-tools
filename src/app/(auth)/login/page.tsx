@@ -17,11 +17,9 @@ const page = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  useEffect(() => {
-    if (isAdminLogin()) {
-      redirect("/dashboard");
-    }
-  }, [isAdminLogin()]);
+  if (isAdminLogin()) {
+    redirect("/dashboard");
+  }
 
   const handleLogin = async () => {
     if (username === "" || password === "") {
