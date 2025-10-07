@@ -124,7 +124,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-sm md:text-base text-center mt-4 text-muted-foreground"
           >
-            Do you need support? Don't hesitate, let us know
+            Do you need support? Don&apos;t hesitate, let us know
           </motion.p>
           <motion.div
             initial={{ y: 10, opacity: 0 }}

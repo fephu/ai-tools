@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import logoImg from "@/assets/logo.svg";
 import { buttonVariants } from "./ui/button";
 import { MdOutlineArrowOutward } from "react-icons/md";
 

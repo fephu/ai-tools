@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
