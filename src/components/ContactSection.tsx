@@ -4,16 +4,40 @@ import Image from "next/image";
 import logoImg from "@/assets/email-campaign-84.svg";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import * as motion from "motion/react-client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useInView } from "motion/react";
 import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { LuSendHorizontal } from "react-icons/lu";
+import { axiosInstance } from "@/lib/axios";
+import axios from "axios";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
+
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
+
+  const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const res = await axiosInstance.post("/subscription/create", {
+        email,
+        name,
+      });
+
+      alert(res.data.message);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.log(err);
+
+        alert(err.response?.data);
+      } else {
+        alert("Unexpected error");
+      }
+    }
+  };
 
   return (
     <motion.section
@@ -37,20 +61,25 @@ const ContactSection = () => {
           Bạn cần hỗ trợ? Đừng ngần ngại, hãy cho chúng tôi biết.
         </p>
         <div className="pt-10">
-          <form className="flex flex-col gap-4">
+          <form onSubmit={handelSubmit} className="flex flex-col gap-4">
             <Input
+              id="email"
               type="email"
+              required
               placeholder="Email"
               className="h-12 md:text-base"
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <Input placeholder="Họ và tên" className="h-12 md:text-base" />
-            <Input placeholder="Số điện thoại" className="h-12 md:text-base" />
-            <Textarea
-              placeholder="Lời nhắn"
-              className="resize-none md:text-base"
+            <Input
+              id="name"
+              required
+              placeholder="Họ và tên"
+              className="h-12 md:text-base"
+              onChange={(e) => setName(e.target.value)}
             />
-            <Button className="w-fit cursor-pointer">
-              Send <LuSendHorizontal />
+
+            <Button className="w-fit cursor-pointer" type="submit">
+              Gửi <LuSendHorizontal />
             </Button>
           </form>
         </div>

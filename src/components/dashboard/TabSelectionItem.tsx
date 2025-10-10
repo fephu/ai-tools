@@ -6,7 +6,7 @@ import { IoLockClosedOutline } from "react-icons/io5";
 
 interface TabSelectionItemProps {
   text: string;
-  isLocked: boolean;
+  isLocked?: boolean;
   selectedTab: string;
   setSelectedTab: (select: string) => void;
 }
@@ -24,7 +24,7 @@ const TabSelectionItem = ({
       className={cn(
         "cursor-pointer",
         selectedTab === text &&
-          "bg-blue-700 text-white hover:bg-blue-600 hover:text-white"
+          "bg-blue-800 hover:bg-blue-700 text-white hover:text-white"
       )}
       onClick={() => setSelectedTab(text)}
     >

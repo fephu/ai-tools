@@ -8,11 +8,11 @@ import Image from "next/image";
 import loginIcon from "@/assets/login.gif";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { isAdminLogin } from "@/lib/utils";
 import { redirect } from "next/navigation";
-import Error from "next/error";
+import { axiosInstance } from "@/lib/axios";
 
 const Page = () => {
   const [username, setUsername] = useState<string>("");
@@ -29,7 +29,7 @@ const Page = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
+      const res = await axiosInstance.post("/auth/login", {
         username,
         password,
       });

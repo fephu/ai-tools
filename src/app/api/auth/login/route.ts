@@ -1,4 +1,4 @@
-import { GenerateToken } from "@/token/generate-token";
+import { GenerateToken } from "@/lib/token";
 
 export async function POST(req: Request) {
   try {

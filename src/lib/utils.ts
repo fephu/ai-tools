@@ -15,6 +15,14 @@ export const isAdminLogin = () => {
 export const isSubscription = () => {
   if (typeof window === "undefined") return false;
 
-  const apiKey = localStorage.getItem("api-key");
+  const apiKey = localStorage.getItem("key");
+
   return !!apiKey;
 };
+
+export function getBaseUrl() {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}

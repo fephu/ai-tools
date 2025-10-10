@@ -9,5 +9,4 @@ export const TABS = [
   "Tạo Prompts Veo",
   "Sửa lỗi chính tả",
   "Chat",
-  "Giới Thiệu",
 ];

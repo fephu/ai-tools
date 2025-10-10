@@ -24,17 +24,21 @@ const Navbar = () => {
                   variant: "ghost",
                 })}
               >
-                <span className="text-base tracking-tight">Gói giá</span>
+                <span className="text-base font-normal tracking-tight">
+                  Gói giá
+                </span>
               </Link>
               <Link
                 href="#contact"
                 className={buttonVariants({
                   variant: "ghost",
                   className:
-                    "bg-blue-800 text-white hover:bg-blue-700 hover:text-white",
+                    "bg-blue-700 text-white hover:bg-blue-600 hover:text-white",
                 })}
               >
-                <span className="text-base tracking-tight">Liên hệ</span>
+                <span className="text-base font-normal tracking-tight">
+                  Liên hệ
+                </span>
                 <MdOutlineArrowOutward />
               </Link>
             </div>
