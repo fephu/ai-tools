@@ -21,6 +21,8 @@ export const isSubscription = () => {
 };
 
 export function getBaseUrl() {
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000";
+  const API_URL =
+    process.env.NODE_ENV === "production"
+      ? "https://ai-tools-ebon.vercel.app"
+      : "http://localhost:3000";
 }
