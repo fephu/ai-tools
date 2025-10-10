@@ -3,7 +3,6 @@ import ContactSection from "@/components/ContactSection";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getBaseUrl } from "@/lib/utils";
 
 export default function Home() {
   return (

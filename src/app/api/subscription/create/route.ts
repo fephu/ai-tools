@@ -20,7 +20,6 @@ export async function POST(req: Request) {
     }
     const key = GenerateToken(email);
     await db.insert(subscriptionTable).values({ email, name, key });
-
     await sendKey(email, key);
 
     return new Response(

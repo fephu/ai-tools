@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { subscriptionTable } from "@/db/schema";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 export async function POST(req: Request) {
   try {

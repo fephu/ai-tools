@@ -1,7 +1,6 @@
 import ActiveLicenseDialog from "@/components/dashboard/ActiveLicenseDialog";
 import TabSelection from "@/components/dashboard/TabSelection";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { isSubscription } from "@/lib/utils";
 
 const Page = () => {
   return (
