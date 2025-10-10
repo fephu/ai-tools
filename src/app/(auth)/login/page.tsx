@@ -10,17 +10,11 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import axios from "axios";
 import { useState } from "react";
-import { isAdminLogin } from "@/lib/utils";
-import { redirect } from "next/navigation";
 import { axiosInstance } from "@/lib/axios";
 
 const Page = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-  if (isAdminLogin()) {
-    redirect("/dashboard");
-  }
 
   const handleLogin = async () => {
     if (username === "" || password === "") {
