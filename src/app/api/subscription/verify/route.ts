@@ -1,10 +1,10 @@
 import { db } from "@/db";
 import { subscriptionTable } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 
 export async function POST(req: Request) {
   try {
-    const { key, email } = await req.json();
+    const { key } = await req.json();
 
     if (!key) {
       return new Response("API Key bắt buộc", { status: 400 });
@@ -13,11 +13,27 @@ export async function POST(req: Request) {
     const subscription = await db
       .select()
       .from(subscriptionTable)
-      .where(
-        and(eq(subscriptionTable.email, email), eq(subscriptionTable.key, key))
-      );
+      .where(eq(subscriptionTable.key, key))
+      .limit(1);
 
-    return new Response("", {
+    if (subscription.length === 0) {
+      return new Response("Thông tin không hợp lệ", {
+        status: 400,
+      });
+    }
+
+    const now = new Date();
+    const expiresAt = new Date(subscription[0].expiredAt);
+
+    const isValid = expiresAt > now;
+
+    if (!isValid) {
+      return new Response("Key đã hết hạn", {
+        status: 400,
+      });
+    }
+
+    return new Response(JSON.stringify({ message: "Xác thực thành công" }), {
       status: 200,
     });
   } catch (error) {

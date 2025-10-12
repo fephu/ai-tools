@@ -7,37 +7,19 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import loginIcon from "@/assets/login.gif";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
-import axios from "axios";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { axiosInstance } from "@/lib/axios";
+import { AdminLogin } from "@/services/auth";
 
 const Page = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleLogin = async () => {
-    if (username === "" || password === "") {
-      alert("Vui lòng nhập thông tin");
-      return;
-    }
+  const login = AdminLogin();
 
-    try {
-      const res = await axiosInstance.post("/auth/login", {
-        username,
-        password,
-      });
-
-      alert(res.data.message);
-
-      localStorage.setItem("token", res.data.token);
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        alert(err.response?.data);
-      } else {
-        alert("Unexpected error");
-      }
-    }
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    login.mutate({ username, password });
   };
 
   return (
@@ -59,10 +41,10 @@ const Page = () => {
             </span>
           </h1>
         </div>
-        <div className="flex flex-col gap-4 mt-4">
+        <form onSubmit={handleLogin} className="flex flex-col gap-4 mt-4">
           <div className="flex flex-col gap-1 w-full">
             <Label>Tên người dùng</Label>
-            <Input onChange={(e) => setUsername(e.target.value)} />
+            <Input onChange={(e) => setUsername(e.target.value)} required />
           </div>
 
           <div className="flex flex-col gap-1 w-full">
@@ -70,17 +52,18 @@ const Page = () => {
             <Input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
           <Button
             size={"lg"}
             className="text-base tracking-tight cursor-pointer"
-            onClick={handleLogin}
           >
             Đăng nhập
+            {login.isPending && <Loader2 className="animate-spin" />}
           </Button>
-        </div>
+        </form>
       </div>
     </MaxWidthWrapper>
   );

@@ -9,8 +9,8 @@ import { useInView } from "motion/react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { LuSendHorizontal } from "react-icons/lu";
-import { axiosInstance } from "@/lib/axios";
-import axios from "axios";
+import { Loader2 } from "lucide-react";
+import { CreateFreeSubscription } from "@/services/subscription";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -19,24 +19,12 @@ const ContactSection = () => {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
 
-  const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const create = CreateFreeSubscription();
+
+  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const res = await axiosInstance.post("/subscription/create", {
-        email,
-        name,
-      });
 
-      alert(res.data.message);
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        console.log(err);
-
-        alert(err.response?.data);
-      } else {
-        alert("Unexpected error");
-      }
-    }
+    create.mutate({ email, name });
   };
 
   return (
@@ -79,7 +67,12 @@ const ContactSection = () => {
             />
 
             <Button className="w-fit cursor-pointer" type="submit">
-              Gửi <LuSendHorizontal />
+              Gửi
+              {create.isPending ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                <LuSendHorizontal />
+              )}
             </Button>
           </form>
         </div>

@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { subscriptionTable } from "@/db/schema";
 import { sendKey } from "@/lib/mailer";
-import { GenerateToken } from "@/lib/token";
+import { GenerateRandomKey } from "@/lib/subscription-key";
 import { eq } from "drizzle-orm";
 
 export async function POST(req: Request) {
@@ -18,8 +18,14 @@ export async function POST(req: Request) {
         status: 403,
       });
     }
-    const key = GenerateToken(email);
-    await db.insert(subscriptionTable).values({ email, name, key });
+
+    const key = GenerateRandomKey();
+    await db.insert(subscriptionTable).values({
+      email,
+      name,
+      key,
+      expiredAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
     await sendKey(email, key);
 
     return new Response(
@@ -29,6 +35,8 @@ export async function POST(req: Request) {
       }
     );
   } catch (error) {
+    console.log(error);
+
     return new Response("Lỗi Server", { status: 500 });
   }
 }

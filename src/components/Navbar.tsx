@@ -12,7 +12,7 @@ const Navbar = () => {
         <MaxWidthWrapper>
           <div className="flex h-16 items-center justify-between">
             <Link href="#">
-              <span className="text-xl md:text-3xl text-blue-800 font-bold">
+              <span className="text-xl md:text-3xl text-blue-800 font-bold tracking-tight">
                 AI Tools
               </span>
             </Link>

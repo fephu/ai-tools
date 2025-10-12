@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Provider from "@/components/Provider";
+import { Toaster } from "sonner";
 
 const roboto = Roboto({
   weight: "variable",
@@ -20,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("h-full font-sans antialiased", roboto.className)}>
-        <main>{children}</main>
+        <main>
+          <Provider>{children}</Provider>
+          <Toaster richColors position="top-center" />
+        </main>
       </body>
     </html>
   );

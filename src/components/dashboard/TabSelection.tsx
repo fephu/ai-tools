@@ -2,15 +2,15 @@
 
 import { TABS } from "@/types";
 import TabSelectionItem from "./TabSelectionItem";
-import { useEffect, useState } from "react";
+import { useSubscription } from "@/hooks/use-subscription";
 
-const TabSelection = () => {
-  const [selectedTab, setSelectedTab] = useState("Giới thiệu");
-  const [isActive, setIsActive] = useState<boolean>(false);
+interface TabSelectionProps {
+  selectedTab: string;
+  setSelectedTab: (s: string) => void;
+}
 
-  useEffect(() => {
-    setIsActive(!!localStorage.getItem("key"));
-  }, []);
+const TabSelection = ({ selectedTab, setSelectedTab }: TabSelectionProps) => {
+  const { key: subscriontion } = useSubscription();
 
   return (
     <div className="flex items-center gap-4">
@@ -21,7 +21,7 @@ const TabSelection = () => {
       />
       {TABS.map((item) => (
         <TabSelectionItem
-          isLocked={!isActive}
+          isLocked={!subscriontion}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
           key={item}

@@ -1,12 +1,22 @@
-import { sign, verify } from "jsonwebtoken";
+import { sign, type SignOptions, verify } from "jsonwebtoken";
 
-export const GenerateToken = (username: string) => {
+type ExpiresIn = SignOptions["expiresIn"];
+
+export const GenerateToken = (username: string, duration: ExpiresIn) => {
   return sign({ username }, process.env.JWT_SECRET!, {
     algorithm: "HS256",
-    expiresIn: "7d",
+    expiresIn: duration,
   });
 };
 
 export const VerifyToken = (token: string) => {
-  return verify(token, process.env.JWT_SECRET!);
+  try {
+    const expired = verify(token, process.env.JWT_SECRET!);
+
+    if (expired) {
+      return true;
+    }
+  } catch (error) {
+    return false;
+  }
 };

@@ -9,7 +9,9 @@ const Footer = () => {
       <MaxWidthWrapper>
         <div className="flex flex-col md:flex-row items-start justify-between gap-10 py-8">
           <div className="flex flex-col gap-1 max-w-60">
-            <span className="text-3xl text-blue-700 font-bold">AI Tools</span>
+            <span className="text-3xl text-blue-700 font-bold tracking-tight">
+              AI Tools
+            </span>
             <span className="text-sm text-muted-foreground">
               Experience high-quality AI, built for Real results
             </span>

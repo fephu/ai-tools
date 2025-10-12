@@ -43,8 +43,8 @@ const PricingItem = ({
       </div>
 
       <div className="flex flex-col gap-2 p-6 items-end">
-        {price > 0 && <p className="text-4xl">${price}</p>}
-        {plan === "Plus" && <MovingArrowButton className="bg-gray-200" />}
+        {price > 0 && <p className="text-4xl">${price}/ tháng</p>}
+        {plan === "Plus" && <MovingArrowButton className="bg-blue-400" />}
       </div>
     </div>
   );

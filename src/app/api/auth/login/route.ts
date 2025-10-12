@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       });
     }
 
-    const token = GenerateToken(username);
+    const token = GenerateToken(username, "7d");
 
     if (
       username === process.env.ADMIN_USERNAME &&

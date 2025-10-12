@@ -5,9 +5,6 @@ import * as motion from "motion/react-client";
 import Image from "next/image";
 import gemini from "@/assets/gemini.svg";
 import geminiText from "@/assets/gemini-text.svg";
-import claude from "@/assets/claude-color.svg";
-import claudeText from "@/assets/claude-text.svg";
-import openAi from "@/assets/openai.svg";
 import MovingArrowButton from "./MovingArrowButton";
 import bgImage from "@/assets/bg.jpg";
 import { useRef } from "react";
@@ -42,6 +39,8 @@ const HeroSection = () => {
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
             }
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             transition={{
               duration: 0.4,
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
@@ -62,15 +61,19 @@ const HeroSection = () => {
             </h1>
 
             <div className="flex items-center gap-4 md:gap-8 mt-2">
-              <div className="flex items-center gap-1">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1"
+              >
                 <Image src={gemini} alt="gemini logo" className="size-6" />
                 <Image src={geminiText} alt="gemini logo" className="size-22" />
-              </div>
-              <div className="flex items-center gap-1">
+              </motion.div>
+              {/* <div className="flex items-center gap-1">
                 <Image src={claude} alt="claude logo" className="size-6" />
                 <Image src={claudeText} alt="claude logo" className="size-22" />
               </div>
-              <Image src={openAi} alt="openai logo" className="size-8" />
+              <Image src={openAi} alt="openai logo" className="size-8" /> */}
             </div>
           </motion.div>
         </div>
